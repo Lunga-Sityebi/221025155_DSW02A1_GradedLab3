@@ -7,16 +7,15 @@ const count = document.getElementById('count');
 btnAdd.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let item = document.getElementById('item');
-
+    let input = document.getElementById('item');
     let listItem = document.createElement('li');
-    let listItems = document.querySelectorAll('li');
+    let listItems = list.children;
 
-    listItem.textContent = item.value;
+    listItem.textContent = input.value;
     list.appendChild(listItem);
 
     changeColor(listItems);
-    item.value= "";
+    input.value= "";
 })
 
 let removedElements= [];
@@ -26,14 +25,14 @@ btnRemove.addEventListener('click', (e) => {
 
     let text = document.getElementById('item');
     
-    let listItems = document.querySelectorAll('li');
+    let listItems = list.children; 
 
     for (let i = 0; i < listItems.length; i++) {
         let element = listItems[i];
 
         if (element.textContent.toLowerCase() === text.value.trim().toLowerCase()) {
             removedElements.push(element.textContent)
-            list.removeChild(list.children[i])
+            list.removeChild(element)
             changeColor(listItems);
             break;
         }
@@ -44,7 +43,8 @@ btnRemove.addEventListener('click', (e) => {
 })
 
 function changeColor(listItems) {
-    for (let i = 1; i < listItems.length; i++) {
+
+    for (let i = 0; i < listItems.length; i++) {
         const element = listItems[i];
 
         if (i % 2 === 0) {
@@ -59,7 +59,7 @@ function changeColor(listItems) {
 function displayResult(array){
     let num = array.length;
     
-    removedItem.textContent = array[array.length - 1];
+    removedItem.textContent = array[array.length - 1]; //displays the latest to be removed
     removedItem.style.color = 'red';
     removedItem.style.fontWeight = 'bold';
 

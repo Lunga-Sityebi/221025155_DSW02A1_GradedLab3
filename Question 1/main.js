@@ -1,6 +1,7 @@
 const btnExecute = document.getElementById('Execute');
 const countBox = document.getElementById('sent-count');
 const wordsDisplay = document.getElementById('words');
+const countDisplay = document.getElementById('count');
 
 btnExecute.addEventListener('click', (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ btnExecute.addEventListener('click', (e) => {
     let wordCount = words.length;
 
     countBox.value = wordCount.toString();
+    countDisplay.textContent = `#Words: ${wordCount}`;
 
     words.forEach(element => {
         wordsDisplay.innerHTML += `<span style="text-decoration: underline;">${element}</span> `;
